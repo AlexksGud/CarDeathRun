@@ -1,17 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 namespace DavidJalbert.TinyCarControllerAdvance
 {
     public class TCCAPlayer : MonoBehaviour
     {
-        private TCCABody carBody;
+        private TCCABody carBody; public TCCABody CarBody => carBody;
         private TCCAWheel[] wheels;
         private GameObject tempContainer;
         private Vector3 initialPosition;
         private Quaternion initialRotation;
 
+        #region AssetsFields
         [Header("Behavior")]
         [Tooltip("How much torque to apply to the wheels. 1 is full speed forward, -1 is full speed backward, 0 is rest.")]
         public float motorDelta = 0;
@@ -26,6 +26,7 @@ namespace DavidJalbert.TinyCarControllerAdvance
         public float boostMaxSpeedMultiplier = 2;
         [Tooltip("Acceleration multiplier to apply when using the boost.")]
         public float boostAccelerationMultiplier = 2;
+        #endregion
 
         void Awake()
         {
@@ -44,7 +45,9 @@ namespace DavidJalbert.TinyCarControllerAdvance
 
             initialPosition = transform.position;
             initialRotation = transform.rotation;
+
         }
+
 
         private void FixedUpdate()
         {
@@ -56,7 +59,11 @@ namespace DavidJalbert.TinyCarControllerAdvance
                 wheel.setSteering(steeringDelta);
                 wheel.setHandbrake(applyHandbrake);
             }
+
+
         }
+
+
 
         public TCCABody getCarBody()
         {
@@ -70,6 +77,7 @@ namespace DavidJalbert.TinyCarControllerAdvance
 
         public void setMotor(float d)
         {
+
             motorDelta = d;
         }
 

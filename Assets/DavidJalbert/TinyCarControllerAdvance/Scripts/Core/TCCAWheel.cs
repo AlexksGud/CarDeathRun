@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DavidJalbert.TinyCarControllerAdvance
 {
@@ -184,7 +182,7 @@ namespace DavidJalbert.TinyCarControllerAdvance
             axleBody.isKinematic = false;
             axleBody.interpolation = rigidbodyInterpolation;
             axleBody.collisionDetectionMode = collisionDetectionMode;
-            
+
             foreach (Collider c in GetComponentsInChildren<Collider>())
             {
                 c.enabled = false;
@@ -244,13 +242,6 @@ namespace DavidJalbert.TinyCarControllerAdvance
             axleCollider.radius = wheelRadius;
             axleBody.angularDrag = 0;
         }
-
-        void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(transform.position, wheelRadius);
-        }
-
         void Update()
         {
             if (!wasInitialized) return;
@@ -416,19 +407,6 @@ namespace DavidJalbert.TinyCarControllerAdvance
         {
             return axleBody.position;
         }
-
-        public Quaternion getRotation()
-        {
-            return axleBody.rotation;
-        }
-
-        public void translate(Vector3 offset)
-        {
-            axleBody.position += offset;
-            springBody.position += offset;
-            steeringBody.position += offset;
-        }
-
         public void setParent(Transform parent)
         {
             wheelRootObject.transform.SetParent(parent, true);
